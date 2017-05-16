@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import Sidebar from './Sidebar.js';
+import Toolbar from './Toolbar.js';
 
-const mapStateToProps = (state, { params: { deckId } }) => ({
-	deckId
-});
+const mapStateToProps = (props, { params: { deckId } }) => {
+	return ({
+		deckId
+	});
+}
 
 const App = ({ deckId, children}) => {
 	return (
 		<div className='app'>
+			<Toolbar deckId={deckId}/>
 			<Sidebar />
-			<h1>Deck {deckId}</h1>
 			{children}
 		</div>);
 };

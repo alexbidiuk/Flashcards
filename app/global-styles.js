@@ -37,6 +37,7 @@ injectGlobal`
     display: -o-flex;
     display: flex;
     align-items: stretch;
+    flex-wrap: wrap;
     height: 100%;
   }
   .sidebar {
@@ -44,6 +45,14 @@ injectGlobal`
     height: 100%;
     background: #f3f2f1;
     padding: 10px;
+  }
+  .toolbar {
+    flex:  1 1 100%;
+    padding: 10px;
+     background: #f8f6f1;
+  }
+  .modal {
+    
   }
 `;
 

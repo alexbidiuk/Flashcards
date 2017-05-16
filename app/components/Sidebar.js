@@ -45,7 +45,6 @@ class Sidebar extends React.Component {
         return ( 
         	<div className = 'sidebar'>
             	<h2> All decks </h2> 
-            	<button onClick = { e => this.props.showAddDeck() } > New deck </button> 
             	<ul> 
             		{
                 		decks.map((deck, i) => {
