@@ -5,10 +5,9 @@ import { store } from '../stores/store';
 
 
 import { addCard } from '../actions/cards.js';
-
 import CardModal from './CardModal.js';
 
-const mapStateToProps = ( { props, params: { deckId } } ) => ({
+const mapStateToProps = (props, { params: { deckId } } ) => ({
     card: { deckId }
 });
 

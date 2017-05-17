@@ -6,6 +6,7 @@ class CardModal extends React.Component {
 	constructor() {
 		super();
 		this.onSave = this.onSave.bind(this); 
+		this.onDelete = this.onDelete.bind(this); 
 	} 
 	componentDidUpdate() {
  		ReactDOM.findDOMNode(this.refs.front).focus();
@@ -14,14 +15,20 @@ class CardModal extends React.Component {
 		var front = ReactDOM.findDOMNode(this.refs.front);
 		var back = ReactDOM.findDOMNode(this.refs.back);
 
-		this.props.onSave(object.assign({}, this.props.card, {front: front.value, back: back.value,}));
+		this.props.onSave(Object.assign({}, this.props.card, {front: front.value, back: back.value,}));
+
+		browserHistory.push(`/deck/${this.props.card.deckId}`);
+	}
+	onDelete(cardId) {
+
+		this.props.onDelete(cardId);
 
 		browserHistory.push(`/deck/${this.props.card.deckId}`);
 	}
 
 	render() {
 		let {card, onDelete} = this.props;
-
+		console.log(card);
 		return(
 			<div className='modal'>
 				<h1>{ onDelete ?  'Edit' : 'New'} Card</h1>
@@ -33,9 +40,9 @@ class CardModal extends React.Component {
 					<button onClick={this.onSave}>Save card</button>
 					<Link to={`/deck/${card.deckId}`}>Cancel</Link>
 					{ onDelete ? 
-						<button onClick={this.onDelete}>Delete card</button> :
+						<button onClick={() => this.onDelete(card.id)}>Delete card</button> :
 						null
-					}
+					}+
 				</p>
 			</div>
 		);

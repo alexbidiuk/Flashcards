@@ -17,6 +17,7 @@ import * as localStore from './localStorage.js';
 import App from './components/App.js';
 import VisibleCards from './components/VisibleCards.js';
 import NewCardModal from './components/NewCardModal.js';
+import EditCardModal from './components/EditCardModal.js';
 
 // import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 
@@ -26,7 +27,8 @@ const routes = (
 	<Route path='/' component={ App }>
 		<Route path='/deck/:deckId' component={ VisibleCards }>
 			<Route path='/deck/:deckId/new' component={ NewCardModal }>
-			
+			</Route>
+			<Route path='/deck/:deckId/edit/:cardId' component={ EditCardModal }>
 			</Route>
 		</Route>
 	</Route>

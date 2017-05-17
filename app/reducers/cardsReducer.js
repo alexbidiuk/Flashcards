@@ -1,4 +1,4 @@
-import { ADD_CARD } from '../constants/action-types.js';
+import { ADD_CARD, UPDATE_CARD, DELETE_CARD } from '../constants/action-types.js';
 
 
 export  const cardsReducer = (cards = [], action) => {
@@ -10,6 +10,19 @@ export  const cardsReducer = (cards = [], action) => {
       		});
 
       		return cards.concat([ newCard ]);
+      		
+      	case UPDATE_CARD: 
+
+      		let updateCard = action.payload;
+      		return cards.map(card => {
+      			(card.id != updateCard.id) ? card :
+      			Object.assign({}, card, updateCard);
+      		});
+
+      	case DELETE_CARD: 
+
+      		let deleteCard = action.payload;
+      		return cards.filter(card => card.id != deleteCard);
 	}
 
 	return cards;
