@@ -14,9 +14,13 @@ export  const cardsReducer = (cards = [], action) => {
       	case UPDATE_CARD: 
 
       		let updateCard = action.payload;
+          console.log(cards);
       		return cards.map(card => {
-      			(card.id != updateCard.id) ? card :
-      			Object.assign({}, card, updateCard);
+      			if (card.id === updateCard.id) { 
+              return  Object.assign({}, card, updateCard) } 
+            else {
+             return card 
+            };
       		});
 
       	case DELETE_CARD: 

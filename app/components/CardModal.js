@@ -19,16 +19,15 @@ class CardModal extends React.Component {
 
 		browserHistory.push(`/deck/${this.props.card.deckId}`);
 	}
-	onDelete(cardId) {
+	onDelete(e) {
 
-		this.props.onDelete(cardId);
+		this.props.onDelete(this.props.card.id);
 
 		browserHistory.push(`/deck/${this.props.card.deckId}`);
 	}
 
 	render() {
 		let {card, onDelete} = this.props;
-		console.log(card);
 		return(
 			<div className='modal'>
 				<h1>{ onDelete ?  'Edit' : 'New'} Card</h1>
@@ -40,7 +39,7 @@ class CardModal extends React.Component {
 					<button onClick={this.onSave}>Save card</button>
 					<Link to={`/deck/${card.deckId}`}>Cancel</Link>
 					{ onDelete ? 
-						<button onClick={() => this.onDelete(card.id)}>Delete card</button> :
+						<button onClick={this.onDelete}>Delete card</button> :
 						null
 					}+
 				</p>

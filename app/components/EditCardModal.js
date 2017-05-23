@@ -7,7 +7,7 @@ import { updateCard, deleteCard } from '../actions/cards.js';
 import CardModal from './CardModal.js';
 
 const mapStateToProps = ( { cards }, { params: { cardId } } ) => ({ 
-	card: cards.filter(card => card.id === parseInt(cardId, 10)).shift()
+	card: cards.filter(card => card.id === parseInt(cardId, 10))[0]
 });
 
 const mapDispatchToProps = dispatch => ({
