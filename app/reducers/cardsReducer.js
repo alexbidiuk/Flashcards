@@ -1,8 +1,11 @@
-import { ADD_CARD, UPDATE_CARD, DELETE_CARD } from '../constants/action-types.js';
+import { ADD_CARD, UPDATE_CARD, DELETE_CARD, RECEIVE_DATA } from '../constants/action-types.js';
 
 
 export  const cardsReducer = (cards = [], action) => {
 	switch(action.type) {
+    case RECEIVE_DATA:
+      return action.payload.cards || cards;
+
 		case ADD_CARD: 
 			let newCard = Object.assign({}, action.payload, {
         		score: 1,

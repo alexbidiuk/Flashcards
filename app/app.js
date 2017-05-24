@@ -11,6 +11,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import { store } from './stores/store';
 import * as localStore from './localStorage.js';
+import { fetchData } from './actions/fetch.js'; 
 
 // Import React stuff
 
@@ -39,10 +40,6 @@ const routes = (
 
 function run () {
 
-	let state = store.getState();
-
-	localStore.set(state, ['decks', 'cards']);
-
 	ReactDOM.render(
 		<Provider store={store}>
 			<Router history={history}>
@@ -53,10 +50,32 @@ function run () {
 	);
 }
 
-run();
+function save () {
 
-store.subscribe(run);
+	let state = store.getState();
+	fetch('/api/data', {
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			decks: state.decks,
+			cards: state.cards
+		});
+	});
+}
 
+
+functions init() {
+	run();
+	store.subscribe(run);
+	store.subscribe(save);
+	store.dispatch(fetchData())
+	
+}
+
+init();
 
 
 // Install ServiceWorker and AppCache in the end since
